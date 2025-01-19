@@ -19,7 +19,7 @@ const MobileNav = () => {
                 <Separator />
                 <SheetDescription className="flex">
                     <Button className="flex-1 font-bold bg-green-500 hover:bg-green-300">
-                        Log In    
+                        Log In
                     </Button>
                 </SheetDescription>
                 </SheetHeader>
