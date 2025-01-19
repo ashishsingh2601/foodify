@@ -26,8 +26,6 @@ export function Carousel({ items, autoplayInterval = 1000 }: CustomImageCarousel
     return () => clearInterval(intervalId)
   }, [nextSlide, autoplayInterval])
 
-  console.log("items", items);
-
   return (
     <div className="relative w-full max-w-3xl mx-auto">
       <div className="overflow-hidden">
@@ -60,7 +58,7 @@ export function Carousel({ items, autoplayInterval = 1000 }: CustomImageCarousel
       >
         &#10095;
       </button>
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {items.map((_, index) => (
           <button
             key={index}
@@ -70,7 +68,7 @@ export function Carousel({ items, autoplayInterval = 1000 }: CustomImageCarousel
             onClick={() => setCurrentIndex(index)}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

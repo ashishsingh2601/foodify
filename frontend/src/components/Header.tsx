@@ -4,10 +4,10 @@ import MainNav from "./MainNav";
 
 const Header = () => {
     return (
-        <div className="border-b-2 border-b-green-600 py-6">
+        <div className="border-b-2 border-b-orange-600 py-6">
             <div className="container mx-auto flex justify-between items-center">
-                <Link to="/" className="text-3xl font-bold tracking-tight text-green-600">
-                    Foodify
+                <Link to="/" className="text-2xl font-bold tracking-tight text-orange-600">
+                    <span className="text-4xl">f</span>oodify
                 </Link>
                 <div className="md:hidden">
                     <MobileNav />
