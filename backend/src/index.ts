@@ -12,7 +12,13 @@ const app = express();
 
 //middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://foodify-frontend-048b.onrender.com",
+        "http://localhost:3000", 
+        "http://localhost:5173", 
+    ]
+}));
 
 
 app.get("/health", async (req: Request, res: Response) => {
