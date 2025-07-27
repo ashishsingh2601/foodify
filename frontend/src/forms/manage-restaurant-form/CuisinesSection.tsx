@@ -21,7 +21,7 @@ const CuisinesSection = () => {
                             <CuisineCheckbox cuisine={cuisineItem} field={field} />
                         ))}
                     </div>
-                    <FormMessage  />
+                    <FormMessage className="text-red-500" />
                 </FormItem>
             )} />
         </div>

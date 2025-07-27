@@ -22,10 +22,10 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
       <FormField
         control={control}
         name={`menuItems.${index}.name`}
-        render={(field) => (
+        render={({field}) => (
           <FormItem>
             <FormLabel className="flex items-center gap-1">
-              Name <FormMessage />
+              Name <FormMessage className="text-red-500" />
             </FormLabel>
             <FormControl>
               <Input {...field} placeholder="Burger" className="bg-white" />
@@ -36,10 +36,10 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
       <FormField
         control={control}
         name={`menuItems.${index}.price`}
-        render={(field) => (
+        render={({field}) => (
           <FormItem>
             <FormLabel className="flex items-center gap-1">
-              Price (INR) <FormMessage />
+              Price (INR) <FormMessage className="text-red-500" />
             </FormLabel>
             <FormControl>
               <Input {...field} placeholder="100" className="bg-white" />

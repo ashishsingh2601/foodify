@@ -49,7 +49,7 @@ const userProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                         <FormControl>
                             <Input {...field} disabled className="bg-white rounded" /> 
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>
                  )} />
                 <FormField control={form.control} name="name" render={({field}) => (
@@ -58,7 +58,7 @@ const userProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                         <FormControl>
                             <Input {...field} className="bg-white rounded" /> 
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>
                 )} />
 
@@ -69,7 +69,7 @@ const userProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white rounded" /> 
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-500" />
                         </FormItem>
                     )} />
                     <FormField control={form.control} name="country" render={({field}) => (
@@ -78,7 +78,7 @@ const userProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white rounded" /> 
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-500" />
                         </FormItem>
                     )} />
                     <FormField control={form.control} name="city" render={({field}) => (
@@ -87,7 +87,7 @@ const userProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white rounded" /> 
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-500" />
                         </FormItem>
                     )} />
                 </div>

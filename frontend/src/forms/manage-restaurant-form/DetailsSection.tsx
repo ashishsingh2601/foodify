@@ -21,7 +21,7 @@ const DetailsSection = () => {
                     <FormControl>
                         <Input {...field} className="bg-white" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                 </FormItem>}
             />
             <div className="flex gap-4">
@@ -33,7 +33,7 @@ const DetailsSection = () => {
                         <FormControl>
                             <Input {...field} className="bg-white" />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>}
                 />
                 <FormField 
@@ -44,7 +44,7 @@ const DetailsSection = () => {
                         <FormControl>
                             <Input {...field} className="bg-white" />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>}
                 />
             </div>
@@ -56,7 +56,7 @@ const DetailsSection = () => {
                         <FormControl>
                             <Input {...field} className="bg-white" placeholder="50"/>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>}
             />
             <FormField 
@@ -67,7 +67,7 @@ const DetailsSection = () => {
                         <FormControl>
                             <Input {...field} className="bg-white" placeholder="15"/>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                     </FormItem>}
             />
         </div>
