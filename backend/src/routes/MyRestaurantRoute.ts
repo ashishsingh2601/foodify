@@ -13,7 +13,7 @@ const upload = multer({
   },
 });
 
-// api/my/restraunt
+// api/my/restaraunt
 router.post(
   "/",
   upload.single("imageFile"),

@@ -47,6 +47,9 @@ type UpdateMyUserRequest = {
     country: string;
 }
 
+console.log("API_BASE_URL:", API_BASE_URL);
+console.log("Full URL:", `${API_BASE_URL}/api/my/user`);
+
 export const useCreateMyUser = () => {
     const { getAccessTokenSilently } = useAuth0();
 
@@ -60,6 +63,7 @@ export const useCreateMyUser = () => {
             },
             body: JSON.stringify(user),
         })
+        console.log("Response user:", response);
 
         if(!response.ok){
             throw new Error("Failed to create user :):")

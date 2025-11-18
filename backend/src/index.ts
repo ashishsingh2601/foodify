@@ -8,9 +8,15 @@ import myRestaurantRoute from "./routes/MyRestaurantRoute";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
     console.log("Connected to DB!");
-})
+}).catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1); // Exit the process on failure
+});
 
 // cloudinary connection
+if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    throw new Error("Missing Cloudinary configuration.");
+}
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -37,7 +43,9 @@ app.get("/health", async (req: Request, res: Response) => {
 });
 
 app.use("/api/my/user", myUserRoute);
+console.log("Registering restaurant routes...");
 app.use("/api/my/restaurant", myRestaurantRoute);
+console.log("Restaurant routes registered!");
 
 
 app.listen(process.env.PORT || 6000, () => {
