@@ -41,9 +41,13 @@ const formSchema = z.object({
             .min(1, "Price is required and must be greater than 0"),
         })
     ),
+    imageUrl: z.string().optional(),
     imageFile: z.instanceof(File, {
         message: "Image is required",
-    }),
+    }).optional(),
+}).refine((data) => data.imageUrl || data.imageFile, {
+    message: "Either existing image or new image file is required",
+    path: ["imageFile"],
 });
 
 type RestaurantFormData = z.infer<typeof formSchema>;
@@ -92,7 +96,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
         formData.append("restaurantName", formDataJson.restaurantName);
         formData.append("cityName", formDataJson.cityName);
         formData.append("countryName", formDataJson.countryName);
-        formData.append("deliveryPrice", (formDataJson.deliveryPrice * 100).toString());
+        formData.append("deliveryPrice", (formDataJson.deliveryPrice).toString());
         formData.append("estimatedDeliveryTime", formDataJson.estimatedDeliveryTime.toString());
 
         formDataJson.cuisines.forEach((cuisine, index) => {
@@ -100,10 +104,12 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
         });
         formDataJson.menuItems.forEach((menuItem, index) => {
             formData.append(`menuItems[${index}][name]`, menuItem.name);
-            formData.append(`menuItems[${index}][price]`, (menuItem.price * 100).toString());
-
+            formData.append(`menuItems[${index}][price]`, (menuItem.price).toString());
         });
-        formData.append("imageFile", formDataJson.imageFile);
+        
+        if (formDataJson.imageFile){
+            formData.append("imageFile", formDataJson.imageFile);
+        }
 
         onSave(formData);
     };
