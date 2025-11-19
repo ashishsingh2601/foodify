@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import myUserRoute from "./routes/MyUserRoute"
 import { v2 as cloudinary } from "cloudinary"
 import myRestaurantRoute from "./routes/MyRestaurantRoute";
+import restaurantRoute from "./routes/RestaurantRoute";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
     console.log("Connected to DB!");
@@ -46,6 +47,8 @@ app.use("/api/my/user", myUserRoute);
 console.log("Registering restaurant routes...");
 app.use("/api/my/restaurant", myRestaurantRoute);
 console.log("Restaurant routes registered!");
+
+app.use("/api/restaurant", restaurantRoute);
 
 
 app.listen(process.env.PORT || 6000, () => {
