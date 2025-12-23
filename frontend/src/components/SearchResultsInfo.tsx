@@ -17,7 +17,6 @@ const SearchResultsInfo = ({ totalPagesForQuery, cityName }: Props) => {
           Change Location
         </Link>
       </span>
-      insert sort dropdown here
     </div>
   );
 };
