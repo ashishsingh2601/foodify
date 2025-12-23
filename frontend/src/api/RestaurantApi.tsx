@@ -1,16 +1,21 @@
+import { SearchState } from "@/pages/SearchPage";
 import { RestaurantSearchResult } from "@/types";
 import { useQuery } from "react-query";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useSearchRestaurants = (cityName?: string) => {
+export const useSearchRestaurants = (searchState: SearchState, cityName?: string) => {
   const createSearchRequest = async (): Promise<RestaurantSearchResult> => {
 
     console.log("city inside", cityName);
 
     console.log("url", `${API_BASE_URL}/api/restaurant/search/${cityName}`);
+
+    const params = new URLSearchParams();
+    params.set("searchQuery", searchState.searchQuery);
+
     const response = await fetch(
-      `${API_BASE_URL}/api/restaurant/search/${cityName}`
+      `${API_BASE_URL}/api/restaurant/search/${cityName}?${params.toString()}`
     );
 
     console.log("Fetch response:", response);
@@ -23,7 +28,7 @@ export const useSearchRestaurants = (cityName?: string) => {
   };
 
   const { data: results, isLoading } = useQuery(
-    ["searchRestaurants"],
+    ["searchRestaurants", searchState],
     createSearchRequest,
     { enabled: !!cityName }
   );
