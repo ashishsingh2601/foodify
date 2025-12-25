@@ -74,7 +74,7 @@ const createLineItems = (
         product_data: {
           name: menuItem.name,
         },
-        unit_amount: menuItem.price * 100,
+        unit_amount: menuItem.price,
       },
       quantity: parseInt(cartItem.quantity),
     };
