@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { Request, Response } from "express";
 import Restaurant, { MenuItemType } from "../models/restraunt";
+import Order from "../models/order";
 
 const STRIPE = new Stripe(process.env.STRIPE_API_KEY as string);
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
@@ -32,6 +33,15 @@ const createCheckoutSession = async (req: Request, res: Response) => {
       throw new Error("Restaurant not found :):");
     }
 
+    const newOrder = new Order({
+        restaurant, 
+        user: req.userId,
+        status: "placed",
+        deliveryDetails: checkoutSessionRequest.deliveryDetails,
+        cartItems: checkoutSessionRequest.cartItems,
+        createdAt: new Date(),
+    });
+
     const lineItems = createLineItems(
       checkoutSessionRequest,
       restaurant.menuItems
@@ -39,7 +49,7 @@ const createCheckoutSession = async (req: Request, res: Response) => {
 
     const session = await createSession(
       lineItems,
-      "TEST_ORDER_ID",
+      newOrder._id.toString(),
       restaurant.deliveryPrice,
       restaurant._id.toString()
     );
@@ -48,6 +58,7 @@ const createCheckoutSession = async (req: Request, res: Response) => {
         return res.status(500).json({ message: "Failed to create stripe checkout session :):" });
     }
 
+    await newOrder.save();
     res.json({ url: session.url });
   } catch (err: any) {
     console.log(err);
@@ -74,7 +85,7 @@ const createLineItems = (
         product_data: {
           name: menuItem.name,
         },
-        unit_amount: menuItem.price,
+        unit_amount: menuItem.price * 100,
       },
       quantity: parseInt(cartItem.quantity),
     };
