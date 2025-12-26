@@ -84,7 +84,7 @@ const SearchBar = ({ onSubmit, onReset, placeHolder, searchQuery }: Props) => {
         </Button>
         <Button
           type="submit"
-          className="rounded-full bg-oragne-500 hover:bg-orange-600 ml-2"
+          className="rounded-full bg-orange-500 hover:bg-orange-600 ml-2"
         >
           Search
         </Button>
